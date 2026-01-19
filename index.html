@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Desktop Finder - 极致桌面体验</title>
+    <link rel="stylesheet" href="/mywjss/style.css">
+    <link rel="stylesheet" href="/mywjss/animations.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="/mywjss/script.js" defer></script>
+</head>
+<body>
+    <!-- Liquid Background -->
+    <div class="blobs-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="grain-overlay"></div>
+        <div class="glass-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Desktop Finder</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#search">搜索</a></li>
+                <li><a href="#preview">预览</a></li>
+                <li><a href="#tags">标签</a></li>
+                <li><a href="#dragdrop">拖拽</a></li>
+                <li><a href="#clipboard">剪切板</a></li>
+                <li><a href="#download" class="nav-btn">下载</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Scroll Path SVG Container (Absolute Positioned) -->
+    <div class="scroll-path-container">
+        <svg id="scroll-svg" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00d2ff">
+                        <animate attributeName="stop-color" values="#00d2ff;#3a7bd5;#00d2ff" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="50%" stop-color="#8E2DE2">
+                        <animate attributeName="stop-color" values="#8E2DE2;#4a00e0;#8E2DE2" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="100%" stop-color="#00d2ff">
+                         <animate attributeName="stop-color" values="#00d2ff;#3a7bd5;#00d2ff" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                </linearGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <path id="scroll-path" d="" fill="none" stroke="url(#liquidGradient)" stroke-width="8" stroke-linecap="round" filter="url(#glow)" />
+        </svg>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section id="hero" class="section-full">
+            <div class="container hero-container">
+                <div class="hero-text pop-in">
+                    <div class="badge">v1.0 正式版</div>
+                    <h1>重塑你的 <br><span class="gradient-text">桌面搜索体验</span></h1>
+                    <p>全无边框磨砂界面与毫秒级搜索，让桌面操作顺畅、高效且更具掌控感。</p>
+                    <div class="hero-btns">
+                        <a href="#download" class="btn primary-btn large-btn">立即下载</a>
+                    </div>
+                </div>
+                <div class="hero-visual pop-in path-target" data-anchor="hero">
+                    <div class="demo-window" id="hero-demo">
+                        <div class="hero-demo-container">
+                            <div class="hero-search-bar">
+                                <div class="css-icon-search"></div>
+                                <div class="hero-typing-text"></div>
+                                <div class="hero-cursor"></div>
+                            </div>
+                            
+                            <!-- Floating Particles -->
+                            <div class="floating-item item-1"><div class="css-icon-file"></div></div>
+                            <div class="floating-item item-2"><div class="css-icon-folder"></div></div>
+                            <div class="floating-item item-3"><div class="css-icon-file"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 1: Search -->
+        <section id="search" class="section-full">
+            <div class="container feature-container left-align">
+                <div class="feature-card glass-card pop-in">
+                    <div class="section-number">01</div>
+                    <h2>极速搜索</h2>
+                    <p>一键定位本地文件，支持模糊匹配与内容搜索，结果即时呈现。</p>
+                    <ul class="feature-list">
+                        <li>毫秒级索引响应</li>
+                        <li>覆盖常见办公与开发文档</li>
+                    </ul>
+                </div>
+                <div class="feature-visual pop-in delay-1 path-target" data-anchor="search">
+                     <div class="demo-window" id="search-demo">
+                        <div class="search-demo-container">
+                            <div class="search-input-box">
+                                <div class="css-icon-search"></div>
+                                <div class="search-placeholder">Type to search...</div>
+                            </div>
+                            <div class="search-results-list">
+                                <div class="result-item">
+                                    <div class="result-icon"></div>
+                                    <div class="result-text" style="width: 60%"></div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-icon"></div>
+                                    <div class="result-text" style="width: 80%"></div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-icon"></div>
+                                    <div class="result-text" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 2: Preview -->
+        <section id="preview" class="section-full">
+            <div class="container feature-container right-align">
+                <div class="feature-visual pop-in path-target" data-anchor="preview">
+                    <div class="demo-window" id="preview-demo">
+                         <div class="preview-demo-container">
+                             <div class="file-grid-preview">
+                                 <div class="file-icon-wrap" id="preview-target">
+                                     <div class="css-icon-file"></div>
+                                     <div class="file-name"></div>
+                                 </div>
+                             </div>
+                             
+                             <div class="context-menu">
+                                 <div class="ctx-item">Open</div>
+                                 <div class="ctx-item active">Quick Look</div>
+                                 <div class="ctx-item">Copy</div>
+                             </div>
+                             
+                             <div class="preview-modal">
+                                 <div class="modal-header">
+                                     <div class="dot"></div><div class="dot"></div>
+                                 </div>
+                                 <div class="modal-body">
+                                     <div class="css-icon-file" style="transform: scale(0.8); opacity: 0.5"></div>
+                                     <div class="content-line"></div>
+                                     <div class="content-line" style="width: 40%"></div>
+                                 </div>
+                             </div>
+
+                             <div class="css-cursor"></div>
+                         </div>
+                    </div>
+                </div>
+                <div class="feature-card glass-card pop-in delay-1">
+                    <div class="section-number">02</div>
+                    <h2>即时预览</h2>
+                    <p>右键即达。无需等待庞大的应用程序启动，轻量级预览窗口带你快速浏览文件核心内容。</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7">原生支持 Excel 表格、高清图片、Markdown 文档及代码高亮显示。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 3: Tags -->
+        <section id="tags" class="section-full">
+            <div class="container feature-container left-align">
+                <div class="feature-card glass-card pop-in">
+                    <div class="section-number">03</div>
+                    <h2>标签系统</h2>
+                    <p>给文件打上标签，让归类更直观。支持自定义标签管理与快捷标签搜索，混乱的文件从此井井有条。</p>
+                    <ul class="feature-list">
+                        <li>自定义标签颜色与名称</li>
+                        <li>支持多标签组合筛选</li>
+                    </ul>
+                </div>
+                <div class="feature-visual pop-in delay-1 path-target" data-anchor="tags">
+                    <div class="demo-window" id="tags-demo">
+                        <div class="tags-demo-container">
+                            <div class="tags-header">
+                                <div class="tag-btn" data-color="#ff5f56">Work</div>
+                                <div class="tag-btn" data-color="#ffbd2e">Design</div>
+                                <div class="tag-btn" data-color="#27c93f">Personal</div>
+                            </div>
+                            <div class="tags-files-grid">
+                                <div class="file-card">
+                                    <div class="css-icon-file"></div>
+                                    <div class="tag-dot"></div>
+                                </div>
+                                <div class="file-card">
+                                    <div class="css-icon-file"></div>
+                                    <div class="tag-dot"></div>
+                                </div>
+                                <div class="file-card">
+                                    <div class="css-icon-file"></div>
+                                    <div class="tag-dot"></div>
+                                </div>
+                            </div>
+                            <div class="css-cursor"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 4: Drag & Drop -->
+        <section id="dragdrop" class="section-full">
+            <div class="container feature-container right-align">
+                <div class="feature-visual pop-in path-target" data-anchor="dragdrop">
+                    <div class="demo-window" id="drag-demo">
+                        <div class="drag-demo-container">
+                            <div class="draggable-file">
+                                <div class="css-icon-folder"></div>
+                                <div class="file-name" style="width: 50px"></div>
+                            </div>
+                            
+                            <div class="drop-zone">
+                                <div class="drop-zone-text">Drop here</div>
+                                <div class="success-check">
+                                    <div class="check-mark"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="css-cursor"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card glass-card pop-in delay-1">
+                    <div class="section-number">04</div>
+                    <h2>无界拖拽</h2>
+                    <p>打破软件边界。支持将文件拖拽至任意窗口或位置，无论是发送给好友还是存入文档，一步即达。</p>
+                    <ul class="feature-list">
+                        <li>跨应用无缝拖放</li>
+                        <li>支持批量文件传输</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 5: Clipboard -->
+        <section id="clipboard" class="section-full">
+            <div class="container feature-container left-align">
+                <div class="feature-card glass-card pop-in">
+                    <div class="section-number">05</div>
+                    <h2>剪切板时光机</h2>
+                    <p>不仅是剪切板，更是你的第二大脑。自动记录最近 100 条历史，支持全文检索，永不丢失灵感。</p>
+                </div>
+                <div class="feature-visual pop-in delay-1 path-target" data-anchor="clipboard">
+                    <div class="glass-card grid-showcase-mini">
+                        <div class="grid-row">
+                            <div class="grid-cell">
+                                <h3>100+</h3>
+                                <p>历史记录</p>
+                            </div>
+                            <div class="grid-cell">
+                                <h3>Search</h3>
+                                <p>全文检索</p>
+                            </div>
+                        </div>
+                        <div class="grid-row" style="margin-top:15px">
+                            <div class="grid-cell full">
+                                <h3>Smart</h3>
+                                <p>智能去重与置顶</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="section-full">
+            <div class="container center-align">
+                <div class="glass-card download-box pop-in zoom-in path-target" data-anchor="download">
+                    <div class="version-badge">Version 1.0.0</div>
+                    <h2>下载 Desktop Finder</h2>
+                    <p>让日常操作更专注、更顺手。</p>
+                    <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/6om8bb0a6e55c4cee4441bf21be5b7e48488b?x-cli-msg=%7B%22linkId%22%3A%221FzkdcnJi60-36eWh%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D" class="btn primary-btn large-btn">下载 Windows 版</a>
+                    <div class="os-support">
+                        <span>Windows 10</span>
+                        <span class="dot">·</span>
+                        <span>Windows 11</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="footer-space"></div>
+</body>
+</html>
