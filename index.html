@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Desktop Finder - 极致桌面体验</title>
+    <link rel="stylesheet" href="/mywjss/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="/mywjss/script.js" defer></script>
+</head>
+<body>
+    <!-- Liquid Background -->
+    <div class="blobs-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="grain-overlay"></div>
+        <div class="glass-overlay"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Desktop Finder</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">首页</a></li>
+                <li><a href="#search">搜索</a></li>
+                <li><a href="#preview">预览</a></li>
+                <li><a href="#download" class="nav-btn">下载</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Scroll Path SVG Container (Absolute Positioned) -->
+    <div class="scroll-path-container">
+        <svg id="scroll-svg" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#00d2ff">
+                        <animate attributeName="stop-color" values="#00d2ff;#3a7bd5;#00d2ff" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="50%" stop-color="#8E2DE2">
+                        <animate attributeName="stop-color" values="#8E2DE2;#4a00e0;#8E2DE2" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                    <stop offset="100%" stop-color="#00d2ff">
+                         <animate attributeName="stop-color" values="#00d2ff;#3a7bd5;#00d2ff" dur="4s" repeatCount="indefinite" />
+                    </stop>
+                </linearGradient>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <path id="scroll-path" d="" fill="none" stroke="url(#liquidGradient)" stroke-width="8" stroke-linecap="round" filter="url(#glow)" />
+        </svg>
+    </div>
+
+    <div class="content-wrapper">
+        <!-- Hero Section -->
+        <section id="hero" class="section-full">
+            <div class="container hero-container">
+                <div class="hero-text pop-in">
+                    <div class="badge">v1.0 正式版</div>
+                    <h1>重塑你的 <br><span class="gradient-text">桌面搜索体验</span></h1>
+                    <p>全无边框磨砂界面与毫秒级搜索，让桌面操作顺畅、高效且更具掌控感。</p>
+                    <div class="hero-btns">
+                        <a href="#download" class="btn primary-btn">立即下载</a>
+                    </div>
+                </div>
+                <div class="hero-visual pop-in path-target" data-anchor="hero">
+                    <div class="glass-card app-window">
+                        <div class="app-header">
+                            <div class="app-controls">
+                                <div class="control-dot green"></div>
+                                <div class="control-dot yellow"></div>
+                                <div class="control-dot red"></div>
+                            </div>
+                        </div>
+                        <div class="search-bar-lg">
+                            <div class="search-icon"></div>
+                            <div class="typing-text-hero">Start typing...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 1: Search -->
+        <section id="search" class="section-full">
+            <div class="container feature-container left-align">
+                <div class="feature-card glass-card pop-in">
+                    <div class="section-number">01</div>
+                    <h2>极速搜索</h2>
+                    <p>一键定位本地文件，支持模糊匹配与内容搜索，结果即时呈现。</p>
+                    <ul class="feature-list">
+                        <li>毫秒级索引响应</li>
+                        <li>覆盖常见办公与开发文档</li>
+                    </ul>
+                </div>
+                <div class="feature-visual pop-in delay-1 path-target" data-anchor="search">
+                     <div class="glass-card app-window small-window">
+                        <div class="app-header">
+                            <div class="app-controls"><div class="control-dot red"></div></div>
+                        </div>
+                        <div class="search-bar">
+                            <div class="search-icon"></div>
+                            <div class="typing-text">年度报表.pdf</div>
+                        </div>
+                        <div class="search-results-mini">
+                            <div class="result-row">📄 2024_年度财务报表.pdf</div>
+                            <div class="result-row">📄 Q4_季度总结_final.docx</div>
+                            <div class="result-row">📊 销售数据汇总.xlsx</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 2: Preview -->
+        <section id="preview" class="section-full">
+            <div class="container feature-container right-align">
+                <div class="feature-visual pop-in path-target" data-anchor="preview">
+                    <div class="glass-card app-window small-window preview-demo">
+                         <div class="preview-content">
+                             <div class="preview-placeholder"></div>
+                             <div class="preview-text">
+                                 <div class="line w-80"></div>
+                                 <div class="line w-60"></div>
+                                 <div class="line w-90"></div>
+                             </div>
+                         </div>
+                         <div class="context-menu-float">
+                             <div class="menu-item active">预览</div>
+                             <div class="menu-item">打开</div>
+                         </div>
+                    </div>
+                </div>
+                <div class="feature-card glass-card pop-in delay-1">
+                    <div class="section-number">02</div>
+                    <h2>即时预览</h2>
+                    <p>右键即达。无需等待庞大的应用程序启动，轻量级预览窗口带你快速浏览文件核心内容。</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7">原生支持 Excel 表格、高清图片、Markdown 文档及代码高亮显示。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature 3: Clipboard -->
+        <section id="clipboard" class="section-full">
+            <div class="container feature-container left-align">
+                <div class="feature-card glass-card pop-in">
+                    <div class="section-number">03</div>
+                    <h2>剪切板时光机</h2>
+                    <p>不仅是剪切板，更是你的第二大脑。自动记录最近 100 条历史，支持全文检索，永不丢失灵感。</p>
+                </div>
+                <div class="feature-visual pop-in delay-1 path-target" data-anchor="clipboard">
+                    <div class="glass-card grid-showcase-mini">
+                        <div class="grid-row">
+                            <div class="grid-cell">
+                                <h3>100+</h3>
+                                <p>历史记录</p>
+                            </div>
+                            <div class="grid-cell">
+                                <h3>Search</h3>
+                                <p>全文检索</p>
+                            </div>
+                        </div>
+                        <div class="grid-row" style="margin-top:15px">
+                            <div class="grid-cell full">
+                                <h3>Smart</h3>
+                                <p>智能去重与置顶</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="section-full">
+            <div class="container center-align">
+                <div class="glass-card download-box pop-in zoom-in path-target" data-anchor="download">
+                    <div class="version-badge">Version 1.0.0</div>
+                    <h2>下载 Desktop Finder</h2>
+                    <p>让日常操作更专注、更顺手。</p>
+                    <a href="https://files.zohopublic.com.cn/public/workdrive-public/download/6om8b67b1d3ab2e1e409e97f2d887c83b2032?x-cli-msg=%7B%22linkId%22%3A%221FzkdcnJi5Y-36eWh%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D" class="btn primary-btn large-btn">下载 Windows 版</a>
+                    <div class="os-support">
+                        <span>Windows 10</span>
+                        <span class="dot">·</span>
+                        <span>Windows 11</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="footer-space"></div>
+</body>
+</html>
